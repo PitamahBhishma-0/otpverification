@@ -1,10 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors'); // Import cors module
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
+
+// Use cors middleware with specific origin
+app.use(cors({
+  origin: 'https://663d0d26ee0bfb2ad05db58c--melodious-phoenix-2dac63.netlify.app'
+}));
 
 // POST endpoint for code verification
 app.post('/verify', (req, res) => {
