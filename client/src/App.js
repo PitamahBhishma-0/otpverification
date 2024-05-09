@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import axios from 'axios'; // Import axios library
 import './App.css';
 
 const App = () => {
@@ -40,18 +41,19 @@ const App = () => {
 
   const handleSubmit = async () => {
     const code = inputs.join('');
-    const response = await fetch('/verify', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ code })
-    });
 
-    if (response.ok) {
-      window.location.href = '/success';
-    } else {
-      setError('Verification Error');
+    try {
+      const response = await axios.post('https://otpverification-axd9.onrender.com/verify', {
+        code
+      });
+
+      if (response.status === 200) {
+        window.location.href = '/success';
+      } else {
+        setError('Verification Error');
+      }
+    } catch (error) {
+      setError('Network Error');
     }
   };
 
