@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 // Use cors middleware with specific origin
 app.use(cors({
-  origin: 'https://663d0d26ee0bfb2ad05db58c--melodious-phoenix-2dac63.netlify.app'
+  origin: 'https://melodious-phoenix-2dac63.netlify.app'
 }));
 
 // POST endpoint for code verification
